@@ -20,13 +20,13 @@
                 (ps: with ps; [ django python-decouple ]))
             ];
             shellHook = ''
-              if [ ! -f "./cookbookapp/.env" ]; then
+              if [ ! -f "./cookbooksite/.env" ]; then
                 echo "  '.env' not found so generating secret key."
-                echo "SECRET_KEY="$(python -c 'from django.core.management import utils; print(utils.get_random_secret_key())') >./cookbookapp/.env
+                echo "SECRET_KEY="$(python -c 'from django.core.management import utils; print(utils.get_random_secret_key())') >./cookbooksite/.env
               else
                 echo "  Found existing '.env'."
               fi
-              cd cookbookapp
+              cd cookbooksite
               echo "  Now in app dir: '$(pwd)'"
             '';
           };
